@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1794851766014,
+      "tag": "0000_polite_surge",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1795012539623,
+      "tag": "0001_nebulous_shadow_king",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1795018637828,
+      "tag": "0002_fast_sersi",
+      "breakpoints": true
+    }
+  ]
+}

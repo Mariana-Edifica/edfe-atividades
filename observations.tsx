@@ -1,0 +1,6 @@
+'use client';
+import {useEffect,useState} from 'react';
+export default function Observations({actor}:{actor:string}){const [text,T]=useState(''),[version,V]=useState(0),[ready,R]=useState(false),[busy,B]=useState(false),[notice,N]=useState('');
+async function load(){try{const r=await fetch('/api/observations');if(!r.ok)throw Error();const d=await r.json();T(d.text);V(d.version);R(true);N('')}catch{N('Não foi possível carregar. Tente novamente.')}}useEffect(()=>{load()},[]);
+async function save(){B(true);try{const r=await fetch('/api/observations',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text,version,actor})});const d=await r.json();if(!r.ok)throw Error(d.error);V(d.version);N('Observações salvas.')}catch(e:any){N(e.message)}finally{B(false)}}
+return <section className="top-observations"><div><label htmlFor="team-observations">Observações</label><button disabled={!actor||!ready||busy} onClick={save}>{busy?'Salvando…':'Salvar'}</button></div><textarea id="team-observations" maxLength={10000} value={text} onChange={e=>T(e.target.value)} disabled={!actor||!ready||busy} placeholder="Anote combinados e pontos de atenção do time…"/><small role="status">{notice}</small>{!ready&&notice&&<button onClick={load}>Tentar novamente</button>}</section>}
